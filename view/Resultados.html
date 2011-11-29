@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Encuesta Café</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <h1>Encuesta de Café Prefreido</h1>
+    <h2>Resultados de la Votaciones</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Tipo de Cafe</th>
+            <th>Puntaje</th>
+        </tr>
+        <?php foreach ($votaciones as $c){?>
+            <tr>
+                <td><?php echo $c->get_id();?></td>
+                <td><?php echo $c->get_tipo();?></td>
+                <td><?php echo $c->get_puntaje();?></td>
+            </tr>
+        <?php }?>
+    </table>
+
+    <h3>Filtrar por Edad</h3>
+    <form method="post" action="?opcion=filtrar">
+        <input type="hidden" name="sexo" value="<?php echo $sexo;?>"/>
+        <input type="hidden" name="edad" value="<?php echo $edad;?>"/>
+        <input type="hidden" name="v1" value="<?php echo $v1;?>"/>
+        <input type="hidden" name="v2" value="<?php echo $v2;?>"/>
+        <input type="hidden" name="v3" value="<?php echo $v3;?>"/>
+        <input type="hidden" name="v4" value="<?php echo $v4;?>"/>
+        <select name="filtro">
+            <option  value="1">18-24</option>
+            <option  value="2">25-30</option>
+            <option  value="3">31-40</option>
+            <option  value="4">Más de 40</option>
+        </select>
+        <input type="submit" value="Filtrar"/>
+    </form>
+    <?php if($listaFiltro !=null ){?>
+    <table>
+        <tr>
+            <th>Rango (<?php echo $e1;?> - <?php echo $e2;?>)</th>
+            <th>Puntaje Total</th>
+        <tr>
+            <td>Café Premium</td>
+            <td><?php echo $listaFiltro->get_ptaje2();?></td>
+        </tr>
+        <tr>
+            <td>Café De La Casa</td>
+            <td><?php echo $listaFiltro->get_ptaje1();?></td>
+        </tr>
+        <tr>
+            <td>Café Negro Tostado</td>            
+            <td><?php echo $listaFiltro->get_ptaje3();?></td>
+        </tr>
+        <tr>
+            <td>Café Orgánico</td>
+            <td><?php echo $listaFiltro->get_ptaje4();?></td>
+        </tr>
+    </table>
+    <?php }?>
+    <p>GRACIAS POR SU PARTICIPACIÓN...! </p>
+    <p><a href="View.php">Salir</a></p>
+        
+    
+  </body>
+</html>
